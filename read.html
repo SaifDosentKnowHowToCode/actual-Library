@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Read</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('dark.avif') repeat;
+      font-family: 'Merriweather', serif;
+      height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+      white-space: nowrap;
+      color: white;
+    }
+
+    #logo {
+      position: absolute;
+      width: 100px;
+      height: auto;
+      z-index: 50;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 28px;
+      margin: 40px auto 20px auto;
+      font-weight: 700;
+      max-width: 1200px;
+    }
+
+    #bookContainer, #techContainer {
+      position: relative;
+      margin: 0 auto 100px auto;
+      padding: 20px;
+      border: 3px solid white;
+      border-radius: 12px;
+      width: 90vw;
+      max-width: 1200px;
+      background: transparent;
+      white-space: normal;
+    }
+
+    .book {
+      display: inline-block;
+      width: 240px;
+      margin: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border: 3px solid white;
+      border-radius: 10px;
+      vertical-align: top;
+      background: transparent;
+      position: relative;
+      animation: float 8s ease-in-out infinite alternate;
+    }
+
+    .book:hover {
+      transform: scale(1.3);
+      z-index: 100;
+    }
+
+    .book img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+    }
+
+    .technology {
+      display: inline-block;
+      width: 240px;
+      margin: 15px 20px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      border: 3px solid white;
+      border-radius: 10px;
+      vertical-align: top;
+      background: transparent;
+      position: relative;
+      animation: float 8s ease-in-out infinite alternate;
+      text-align: center;
+      color: white;
+      font-weight: 700;
+      user-select: none;
+    }
+
+    .technology:hover {
+      transform: scale(1.3);
+      z-index: 100;
+    }
+
+    .technology img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) rotate(0deg); }
+      25% { transform: translateY(-10px) rotate(2deg); }
+      50% { transform: translateY(10px) rotate(-2deg); }
+      75% { transform: translateY(-5px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <img src="A.gif" id="logo" />
+
+  <h2 class="section-title">Books Read</h2>
+  <div id="bookContainer"></div>
+
+  <h2 class="section-title">Technologies Learned</h2>
+  <div id="techContainer"></div>
+
+  <script>
+    const books = [
+      { file: "Phi/Discourses And Selected Writings By Epictetus.pdf", img: "Covers/epictetus.jpg" },
+      { file: "Lit/Letranger.pdf", img: "Covers/stranger.jpg" },
+      { file: "Lit/Atomic Habits.pdf", img: "Covers/habits.jpg" },
+    ];
+
+    const technologies = [
+      { img: "icons/JAVASCRIPT.png", job: "Web Functionality" },
+      { img: "icons/HTML.png", job: "Website Structure" },
+      { img: "icons/CSS.png", job: "Website Styling" }
+    ];
+
+    const bookContainer = document.getElementById("bookContainer");
+    const techContainer = document.getElementById("techContainer");
+
+    books.forEach((book) => {
+      const el = document.createElement("a");
+      el.href = book.file;
+      el.target = "_blank";
+      el.className = "book";
+
+      const img = document.createElement("img");
+      img.src = book.img;
+
+      el.appendChild(img);
+      bookContainer.appendChild(el);
+    });
+
+    technologies.forEach((tech) => {
+      const el = document.createElement("div");
+      el.className = "technology";
+
+      const img = document.createElement("img");
+      img.src = tech.img;
+
+      const label = document.createElement("div");
+      label.textContent = tech.job;
+
+      el.appendChild(img);
+      el.appendChild(label);
+      techContainer.appendChild(el);
+    });
+  </script>
+</body>
+</html>
